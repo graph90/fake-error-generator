@@ -1,0 +1,66 @@
+#:kivy 2.2.0
+
+<FakeErrorLayout>:
+    orientation: "vertical"
+    padding: dp(20)
+    spacing: dp(16)
+
+    canvas.before:
+        Color:
+            rgba: 0.12, 0.13, 0.15, 1   # dark neutral background
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    Label:
+        text: "Message Deferral"
+        font_size: "22sp"
+        bold: True
+        size_hint_y: None
+        height: dp(40)
+        color: 1, 1, 1, 1
+
+    Label:
+        text: "Severity"
+        font_size: "14sp"
+        size_hint_y: None
+        height: dp(24)
+        color: 0.7, 0.7, 0.7, 1
+
+    Spinner:
+        id: severity_spinner
+        text: "Soft"
+        values: ["Soft", "Medium", "Hard"]
+        size_hint_y: None
+        height: dp(48)
+        background_color: 0.18, 0.2, 0.23, 1
+        color: 1, 1, 1, 1
+
+    Button:
+        text: "Generate Message"
+        size_hint_y: None
+        height: dp(56)
+        background_normal: ""
+        background_color: 0.25, 0.45, 0.85, 1
+        color: 1, 1, 1, 1
+        on_press: app.generate_message()
+
+    TextInput:
+        id: output
+        readonly: True
+        multiline: True
+        hint_text: "Generated message will appear here"
+        background_color: 0.18, 0.2, 0.23, 1
+        foreground_color: 1, 1, 1, 1
+        cursor_color: 1, 1, 1, 1
+        padding: dp(12)
+        font_size: "16sp"
+
+    Button:
+        text: "Copy to Clipboard"
+        size_hint_y: None
+        height: dp(56)
+        background_normal: ""
+        background_color: 0.2, 0.65, 0.4, 1
+        color: 1, 1, 1, 1
+        on_press: app.copy_message()
